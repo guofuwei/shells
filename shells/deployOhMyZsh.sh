@@ -22,7 +22,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 echo "正在拉取.zshrc文件并应用"
-wget https://gitee.com/guo-fuwei/library/releases/download/v0.1/zshrc
+wget https://gitee.com/guo-fuwei/library/releases/download/v0.2/zshrc
 sudo mv ~/.zshrc ~/.zshrc_bak
 sudo mv ./zshrc ~/.zshrc
 zsh
