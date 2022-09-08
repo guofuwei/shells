@@ -9,7 +9,7 @@ echo "安装nodejs,npm,ctags,python"
 sudo apt install -y  npm python3 pip wget curl clangd
 sudo npm install n -g
 export NODE_MIRROR=https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/
-n lts
+sudo n lts
 pip install pynvim
 sudo apt install astyle clang-format ctags -y 
 
