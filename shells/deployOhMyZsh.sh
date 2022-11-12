@@ -13,6 +13,7 @@ sudo apt install zsh wget git -y
 
 echo "正在改变登陆shell为zsh,下次登陆将以zsh登陆"
 sudo chsh -s /bin/zsh
+sudo usermod -s /bin/zsh $USER 
 
 echo "正在安装oh-my-zsh"
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
