@@ -8,14 +8,14 @@ fi
 cd ~
 if [ ! \( -a "/etc/sudoers.d" \) ]
 then 
-  $PACKET_CMD update && $PACKET_CMD install -y sudo
+  $PACKAGE_CMD update && $PACKAGE_CMD install -y sudo
 fi
 
-echo "正在更新$PACKET_CMD包源"
-sudo $PACKET_CMD update
+echo "正在更新$PACKAGE_CMD包源"
+sudo $PACKAGE_CMD update
 
 echo "正在安装zsh,wget,git"
-sudo $PACKET_CMD install zsh wget git -y
+sudo $PACKAGE_CMD install zsh wget git -y
 
 echo "正在改变登陆shell为zsh,下次登陆将以zsh登陆"
 sudo chsh -s /bin/zsh
