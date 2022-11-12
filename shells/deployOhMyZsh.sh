@@ -1,15 +1,21 @@
 #!/bin/bash
+apt --help > /dev/null
+if [ $? -ne 0 ];then
+    PACKAGE_CMD=yum
+else
+    PACKAGE_CMD=apt
+fi
 cd ~
 if [ ! \( -a "/etc/sudoers.d" \) ]
 then 
-  apt update && apt install -y sudo
+  $PACKET_CMD update && $PACKET_CMD install -y sudo
 fi
 
-echo "正在更新APT包源"
-sudo apt update
+echo "正在更新$PACKET_CMD包源"
+sudo $PACKET_CMD update
 
 echo "正在安装zsh,wget,git"
-sudo apt install zsh wget git -y
+sudo $PACKET_CMD install zsh wget git -y
 
 echo "正在改变登陆shell为zsh,下次登陆将以zsh登陆"
 sudo chsh -s /bin/zsh

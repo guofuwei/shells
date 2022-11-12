@@ -1,10 +1,16 @@
 #!/bin/bash
+apt --help > /dev/null
+if [ $? -ne 0 ];then
+    PACKAGE_CMD=yum
+else
+    PACKAGE_CMD=apt
+fi
 cd ~
 if [ ! \( -a "/etc/sudoers.d" \) ]
 then 
-  apt update && apt install -y sudo
+  $PACKAGE_CMD update && $PACKAGE_CMD install -y sudo
 fi
-sudo apt update && sudo apt install -y wget git
+sudo $PACKAGE_CMD update && sudo $PACKAGE_CMD install -y wget git
 echo "正在拉取项目"
 git clone https://gitee.com/guo-fuwei/library.git
 cd library
@@ -14,19 +20,19 @@ then
   exit
 fi
 
-echo -n "是否需要更换阿里源镜像APT(输入y/Y确定，输入其他跳过):"
+echo -n "是否需要更换阿里源镜像$PACKAGE_CMD(输入y/Y确定，输入其他跳过):"
 read choice;
 if [[ $choice = "y" || $choice = "Y" ]]
 then
-  if [ -a "/etc/apt/sources.list" ]
+  if [ -a "/etc/$PACKAGE_CMD/sources.list" ]
   then
-    echo "正在备份APT源文件"
-    sudo cp /etc/apt/sources.list /etc/apt/source.list.bak
+    echo "正在备份$PACKAGE_CMD源文件"
+    sudo cp /etc/$PACKAGE_CMD/sources.list /etc/$PACKAGE_CMD/source.list.bak
     echo "正在更换阿里源国内镜像"
-    sudo rm /etc/apt/sources.list
+    sudo rm /etc/$PACKAGE_CMD/sources.list
   fi
-  sudo mv sources.list /etc/apt/sources.list
-  sudo apt update 
+  sudo mv sources.list /etc/$PACKAGE_CMD/sources.list
+  sudo $PACKAGE_CMD update 
 fi
 
 
